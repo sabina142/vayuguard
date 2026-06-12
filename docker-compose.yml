@@ -1,16 +1,19 @@
 services:
-  app:
-    build: .
+  backend:
+    build: ./backend
+    container_name: vayuguard-backend
     ports:
       - "3000:3000"
-    env_file:
-      - .env
+    depends_on:
+      - mongo
 
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: vayuguard
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
+  mongo:
+    image: mongo:7
+    container_name: vayuguard-mongo
     ports:
-      - "5432:5432"
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
