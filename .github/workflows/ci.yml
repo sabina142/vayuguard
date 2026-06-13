@@ -1,8 +1,7 @@
-name: CI Pipeline
-
 on:
   push:
     branches:
+      - main
       - devops
 
   pull_request:
@@ -10,18 +9,3 @@ on:
       - main
       - develop
       - devops
-
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Lint Check
-        run: echo "Lint check passed"
-
-      - name: Test Check
-        run: echo "Tests passed"
